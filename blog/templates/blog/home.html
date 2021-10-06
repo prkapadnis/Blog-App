@@ -7,67 +7,23 @@ Home
 <div class="container">
     <!-- Posts -->
     <div style=" margin-top:80px;">
+        {% for post in posts %}
         <div class="card m-2" style="width: 45rem;">
             <div class="card-body">
-                <h6 style="float: left; font-weight: bold;">Prkapadnis</h6>
+                <h6 style="float: left; font-weight: bold;">{{post.author}}</h6>
                 <small class="card-subtitle text-muted" style="margin-top:2px; margin-left: 20px;">
-                    6 Oct 2021
+                    {{post.dateOfPosted|date:"F d, Y"}}
                 </small>
                 <hr>
-                <p class="card-title" style="font-weight: bold; font-size: xx-large;"> Card Title </p>
+                <p class="card-title" style="font-weight: bold; font-size: xx-large;"> {{post.title}} </p>
                 <p class="card-text ml-3">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut hic sit, cupiditate aliquam, repellat
-                    beatae impedit obcaecati suscipit, omnis at soluta quidem est debitis placeat ducimus veritatis.
-                    Quo, maxime voluptas!
+                    {{post.content}}
                 </p>
             </div>
         </div>
+        {% endfor %}
     </div>
-    <div class="card m-2" style="width: 45rem;">
-        <div class="card-body">
-            <h6 style="float: left; font-weight: bold;">Prkapadnis</h6>
-            <small class="card-subtitle text-muted" style="margin-top:2px; margin-left: 20px;">
-                6 Oct 2021
-            </small>
-            <hr>
-            <p class="card-title" style="font-weight: bold; font-size: xx-large;"> Card Title </p>
-            <p class="card-text ml-3">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut hic sit, cupiditate aliquam, repellat
-                beatae impedit obcaecati suscipit, omnis at soluta quidem est debitis placeat ducimus veritatis.
-                Quo, maxime voluptas!
-            </p>
-        </div>
-    </div>
-    <div class="card m-2" style="width: 45rem;">
-        <div class="card-body">
-            <h6 style="float: left; font-weight: bold;">Prkapadnis</h6>
-            <small class="card-subtitle text-muted" style="margin-top:2px; margin-left: 20px;">
-                6 Oct 2021
-            </small>
-            <hr>
-            <p class="card-title" style="font-weight: bold; font-size: xx-large;"> Card Title </p>
-            <p class="card-text ml-3">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut hic sit, cupiditate aliquam, repellat
-                beatae impedit obcaecati suscipit, omnis at soluta quidem est debitis placeat ducimus veritatis.
-                Quo, maxime voluptas!
-            </p>
-        </div>
-    </div>
-    <div class="card m-2" style="width: 45rem;">
-        <div class="card-body">
-            <h6 style="float: left; font-weight: bold;">Prkapadnis</h6>
-            <small class="card-subtitle text-muted" style="margin-top:2px; margin-left: 20px;">
-                6 Oct 2021
-            </small>
-            <hr>
-            <p class="card-title" style="font-weight: bold; font-size: xx-large;"> Card Title </p>
-            <p class="card-text ml-3">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut hic sit, cupiditate aliquam, repellat
-                beatae impedit obcaecati suscipit, omnis at soluta quidem est debitis placeat ducimus veritatis.
-                Quo, maxime voluptas!
-            </p>
-        </div>
-    </div>
+
 </div>
 </div>
 
