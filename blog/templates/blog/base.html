@@ -9,7 +9,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static '/css/main.css'%}">
     <title>
-        {% block title %} Hello, world! {% endblock %}
+        {% block title %} Django Blog {% endblock %}
     </title>
 </head>
 
@@ -30,12 +30,13 @@
                 <!-- Navbar Right Side -->
                 {% if request.user.is_authenticated %}
                 <div class="navbar-nav" style="margin-left: auto;">
-                    <a class="nav-item nav-link" href="#">New Post</a>
-                    <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                    <a class="nav-item nav-link" href="#"> New Post </a>
+                    <a class="nav-item nav-link" href="{% url 'profile' %}"> Profile </a>
+                    <a class="nav-item nav-link" href="{% url 'logout' %}"> Logout </a>
                 </div>
                 {% else %}
                 <div class="navbar-nav" style="margin-left: auto;">
-                    <a class="nav-item nav-link" href="#">Login</a>
+                    <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
                     <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
                 </div>
                 {% endif %}
