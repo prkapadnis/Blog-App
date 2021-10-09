@@ -52,9 +52,6 @@ def profile_view(request):
 
 
 def edit_profile(request, ):
-    u_form = UserUpdateForm(instance=request.user)
-    p_form = ProfileUpdateForm(instance=request.user.profile)
-    bio_form = BioUpdateForm(instance=request.user.bio)
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(
@@ -63,5 +60,9 @@ def edit_profile(request, ):
         if u_form.is_valid() and p_form.is_valid() and bio_form.is_valid():
             u_form.save(),  p_form.save(), bio_form.save()
             messages.success(request, f'Your account has been updated!!')
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+        bio_form = BioUpdateForm(instance=request.user.bio)
     context = {'form': u_form, 'profile': p_form, 'bio': bio_form}
     return render(request, "users/edit_profile.html", context)
