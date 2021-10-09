@@ -10,7 +10,9 @@
                 <div class="image">
                     <img src="{{ user.profile.image.url }}"
                         style="width:150px; height: 150px; border-radius: 50%; margin-left:245px;">
-                    <button class="btn btn-dark" style="float: right; margin-top: 10px;"> Edit Profile </button>
+                    <a href="{% url 'edit' request.user.id %}" class="btn btn-dark"
+                        style="float: right; margin-top: 10px;">
+                        Edit Profile </a>
                 </div>
                 <div class="media-body">
                     <h2 class="account-heading m-2 text-center">{{ user.username }}</h2>

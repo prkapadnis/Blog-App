@@ -1,8 +1,11 @@
+from typing import ContextManager
+from django.db.models.query import InstanceCheckMeta
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from .forms import UserRegistration
+from .forms import UserRegistration, UserUpdateForm, ProfileUpdateForm
 
 
 def register_view(request):
@@ -45,3 +48,18 @@ def logout_view(request):
 
 def profile_view(request):
     return render(request, "users/profile.html")
+
+
+def edit_profile(request, pk):
+    u_form = UserUpdateForm(instance=request.user)
+    p_form = ProfileUpdateForm(instance=request.user.profile)
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(
+            request.POST, request.FILES, instance=request.user.profile)
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, f'Your account has been updated!!')
+    context = {'form': u_form, 'profile': p_form}
+    return render(request, "users/edit_profile.html", context)

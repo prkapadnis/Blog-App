@@ -1,0 +1,41 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} Edit {% endblock %}
+
+{% block content %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success w-50" role="alert">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+<div class="card w-50">
+    <div class="card-header">
+        <p class="m-2" style="font-size: x-large;">User Info of @{{request.user}}</p>
+    </div>
+    <div class="card-body">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="m-2">
+                {{form.username | as_crispy_field}}
+            </div>
+            <div class="m-2">
+                {{form.email | as_crispy_field}}
+            </div>
+            <div class="m-2">
+                {{form.first_name | as_crispy_field}}
+            </div>
+            <div class="m-2">
+                {{form.last_name | as_crispy_field}}
+            </div>
+            <div class="m-2">
+                {{profile| crispy }}
+            </div>
+            <div class="m-2">
+                <input type="submit" value="Update" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
