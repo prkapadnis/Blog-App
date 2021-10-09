@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from .forms import UserRegistration, UserUpdateForm, ProfileUpdateForm
+from .forms import UserRegistration, UserUpdateForm, ProfileUpdateForm, BioUpdateForm
 
 
 def register_view(request):
@@ -50,16 +50,19 @@ def profile_view(request):
     return render(request, "users/profile.html")
 
 
-def edit_profile(request, pk):
+def edit_profile(request):
     u_form = UserUpdateForm(instance=request.user)
     p_form = ProfileUpdateForm(instance=request.user.profile)
+    bio_form = BioUpdateForm(instance=request.user.bio)
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(
             request.POST, request.FILES, instance=request.user.profile)
-        if u_form.is_valid() and p_form.is_valid():
+        bio_form = BioUpdateForm(request.POST, instance=request.user.bio)
+        if u_form.is_valid() and p_form.is_valid() and bio_form.is_valid():
             u_form.save()
             p_form.save()
+            bio_form.save()
             messages.success(request, f'Your account has been updated!!')
-    context = {'form': u_form, 'profile': p_form}
+    context = {'form': u_form, 'profile': p_form, 'bio': bio_form}
     return render(request, "users/edit_profile.html", context)
