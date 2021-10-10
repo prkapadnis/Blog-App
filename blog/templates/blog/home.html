@@ -10,12 +10,16 @@ Home
         {% for post in posts %}
         <div class="card m-2" style="width: 45rem;">
             <div class="card-body">
-                <h6 style="float: left; font-weight: bold;">{{post.author}}</h6>
-                <small class="card-subtitle text-muted" style="margin-top:2px; margin-left: 20px;">
-                    {{post.dateOfPosted|date:"F d, Y"}}
-                </small>
-                <hr>
-                <p class="card-title" style="font-weight: bold; font-size: xx-large;"> {{post.title}} </p>
+                <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}"
+                    style="width: 55px; height: 55px; float: left; margin-right: 15px; margin-bottom: 20px;">
+                <div class="post-data">
+                    <h6 style="float: left; font-weight: bold;">{{post.author}}</h6>
+                    <small class="card-subtitle text-muted" style="margin-top:2px; margin-left: 20px;">
+                        {{post.dateOfPosted|date:"F d, Y"}}
+                    </small>
+                    <hr>
+                    <p class="card-title" style="font-weight: bold; font-size: xx-large;"> {{post.title}} </p>
+                </div>
             </div>
         </div>
         {% endfor %}

@@ -30,7 +30,7 @@
                 <!-- Navbar Right Side -->
                 {% if request.user.is_authenticated %}
                 <div class="navbar-nav" style="margin-left: auto;">
-                    <a class="nav-item nav-link" href="#"> New Post </a>
+                    <a class="nav-item nav-link" href="{% url 'createPost' %}"> New Post </a>
                     <a class="nav-item nav-link" href="{% url 'profile' %}"> Profile </a>
                     <a class="nav-item nav-link" href="{% url 'logout' %}"> Logout </a>
                 </div>

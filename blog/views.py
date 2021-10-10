@@ -6,7 +6,7 @@ from .forms import PostForm
 
 
 def home(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-dateOfPosted')
     context = {'posts': posts}
     return render(request, "blog/home.html", context)
 
@@ -15,14 +15,15 @@ def about(request):
     return render(request, "blog/about.html")
 
 
-# def create_post(request):
-#     post = PostForm()
-#     if request.method == 'POST':
-#         post = PostForm(request.POST)
-
-#         if post.is_valid():
-#             post.save()
-#             messages.success(request, f"Post Created!!")
-#             return redirect("/blog")
-#     context = {'post': post}
-#     return render(request, 'blog/post.html', context)
+def createPost_view(request):
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.instance.author = request.user
+            form.save()
+            form = PostForm()
+            messages.success(request, "The Post is created!!")
+    else:
+        form = PostForm()
+    context = {'form': form}
+    return render(request, 'blog/post.html', context)
