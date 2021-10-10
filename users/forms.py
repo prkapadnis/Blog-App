@@ -35,3 +35,6 @@ class BioUpdateForm(forms.ModelForm):
     class Meta:
         model = Bio
         fields = ['bio']
+        widgets = {
+            'bio': forms.Textarea(attrs={'style': 'height:144px'})
+        }

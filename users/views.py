@@ -2,10 +2,11 @@ from typing import ContextManager
 from django.db.models.query import InstanceCheckMeta
 from django.shortcuts import redirect, render
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UsernameField
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from .forms import UserRegistration, UserUpdateForm, ProfileUpdateForm, BioUpdateForm
+from blog.models import Post
 
 
 def register_view(request):
@@ -48,7 +49,10 @@ def logout_view(request):
 
 
 def profile_view(request):
-    return render(request, "users/profile.html")
+    posts = Post.objects.filter(author=request.user).order_by("-dateOfPosted")
+    print(posts)
+    context = {'posts': posts}
+    return render(request, "users/profile.html", context)
 
 
 def edit_profile(request, ):
