@@ -18,7 +18,9 @@ Home
                         {{post.dateOfPosted|date:"F d, Y"}}
                     </small>
                     <hr>
-                    <p class="card-title" style="font-weight: bold; font-size: xx-large;"> {{post.title}} </p>
+                    <a href="{% url 'detail-view' post.id %}" style="text-decoration: none; color: black;">
+                        <p class="card-title" style="font-weight: bold; font-size: xx-large;"> {{post.title}} </p>
+                    </a>
                 </div>
             </div>
         </div>

@@ -27,3 +27,9 @@ def createPost_view(request):
         form = PostForm()
     context = {'form': form}
     return render(request, 'blog/post.html', context)
+
+
+def postDetail_view(request, pk):
+    post = Post.objects.get(id=pk)
+    context = {'post': post}
+    return render(request, "blog/postDetails_view.html", context)
