@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Post
 from .forms import PostForm
@@ -15,6 +16,7 @@ def about(request):
     return render(request, "blog/about.html")
 
 
+@login_required(login_url="/user/")
 def createPost_view(request):
     if request.method == "POST":
         form = PostForm(request.POST)

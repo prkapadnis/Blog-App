@@ -4,6 +4,7 @@ from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm, UsernameField
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .forms import UserRegistration, UserUpdateForm, ProfileUpdateForm, BioUpdateForm
 from blog.models import Post
@@ -48,6 +49,7 @@ def logout_view(request):
     return redirect('/')
 
 
+@login_required(login_url="/user/")
 def profile_view(request):
     posts = Post.objects.filter(author=request.user).order_by("-dateOfPosted")
     print(posts)
@@ -55,6 +57,7 @@ def profile_view(request):
     return render(request, "users/profile.html", context)
 
 
+@login_required(login_url="/user/")
 def edit_profile(request, ):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
