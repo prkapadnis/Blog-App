@@ -52,7 +52,6 @@ def logout_view(request):
 @login_required(login_url="/user/")
 def profile_view(request):
     posts = Post.objects.filter(author=request.user).order_by("-dateOfPosted")
-    print(posts)
     context = {'posts': posts}
     return render(request, "users/profile.html", context)
 
