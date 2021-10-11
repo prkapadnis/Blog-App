@@ -1,6 +1,6 @@
 {% extends "blog/base.html" %}
 {% block title %}
-Home
+Djnago Blog
 {% endblock %}
 
 {% block content %}
@@ -18,9 +18,11 @@ Home
                         {{post.dateOfPosted|date:"F d, Y"}}
                     </small>
                     <hr>
-                    <a href="{% url 'detail-view' post.id %}" style="text-decoration: none; color: black;">
-                        <p class="card-title" style="font-weight: bold; font-size: xx-large;"> {{post.title}} </p>
-                    </a>
+                    <p class="card-title" style="font-weight: bold; font-size: xx-large;">
+                        <a href="{% url 'detail-view' post.id %}" style="text-decoration: none; color: black;">
+                            {{post.title}}
+                        </a>
+                    </p>
                 </div>
             </div>
         </div>
