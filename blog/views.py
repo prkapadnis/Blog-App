@@ -35,3 +35,15 @@ def postDetail_view(request, pk):
     post = Post.objects.get(id=pk)
     context = {'post': post}
     return render(request, "blog/postDetails_view.html", context)
+
+def postUpdate_view(request, pk):
+    post = Post.objects.get(id=pk)
+    if request.method == 'POST':
+         form = PostForm(request.POST, instance=post)
+         if form.is_valid():
+             form.save()
+             messages.success(request, f"The Post is updated!!")
+    else:
+        form = PostForm(instance=post)
+    context = {'form' : form, 'post':post}
+    return render(request, "blog/postUpdate_view.html", context)

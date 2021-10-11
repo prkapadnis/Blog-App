@@ -9,10 +9,17 @@
     <div class="card-body p-3">
         <img class="rounded-circle" src="{{post.author.profile.image.url}}"
             style="height: 50px; width: 50px; float: left; margin-right: 20px;">
+        {% if post.author.id == user.id %}
+        <div style="float: right;">
+            <a href="{% url 'update-view' post.id %}" class="btn btn-primary">Update</a>
+            <a href="#" class="btn btn-danger">Delete</a>
+        </div>
+        {% endif %}
         <h5 class="fs-4">{{ post.author }}</h5>
         <p class="text-secondary">
             {{ post.dateOfPosted }}
         </p>
+
         <div class="post fs-2">
             <p>
                 {{ post.title }}
