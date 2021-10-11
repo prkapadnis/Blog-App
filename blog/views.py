@@ -47,3 +47,8 @@ def postUpdate_view(request, pk):
         form = PostForm(instance=post)
     context = {'form' : form, 'post':post}
     return render(request, "blog/postUpdate_view.html", context)
+
+def postDelete_view(request, pk):
+    post = Post.objects.get(id=pk)
+    post.delete()
+    return redirect("/")

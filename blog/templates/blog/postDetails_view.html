@@ -11,8 +11,8 @@
             style="height: 50px; width: 50px; float: left; margin-right: 20px;">
         {% if post.author.id == user.id %}
         <div style="float: right;">
-            <a href="{% url 'update-view' post.id %}" class="btn btn-primary">Update</a>
-            <a href="#" class="btn btn-danger">Delete</a>
+            <a href="{% url 'update-view' post.id %}" class="btn btn-primary" type="submit">Update</a>
+            <a href="{% url 'delete-view' post.id %}" class="btn btn-danger" type="submit">Delete</a>
         </div>
         {% endif %}
         <h5 class="fs-4">{{ post.author }}</h5>
